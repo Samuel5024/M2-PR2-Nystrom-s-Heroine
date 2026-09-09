@@ -1,29 +1,33 @@
 using UnityEngine;
 
-public interface IHeroineState
+namespace Chapter.State
 {
-    void Enter();
-    void HandleInput();
-    void Update();
-}
-public class Heroine : MonoBehaviour
-{
-    private IHeroineState _state;
-    private void Awake()
+    public interface IHeroineState
     {
-        _state = new StandingState(this);
-        _state.Enter();
+        void Enter();
+        void HandleInput();
+        void Update();
+    }
+    public class Heroine : MonoBehaviour
+    {
+        private IHeroineState _state;
+        private void Awake()
+        {
+            _state = new StandingState(this);
+            _state.Enter();
+        }
+
+        public void SetHeroineState(IHeroineState newState)
+        {
+            _state = newState;
+            _state.Enter();
+        }
+
+        private void Update()
+        {
+            _state.HandleInput();
+            _state.Update();
+        }
     }
 
-    public void SetHeroineState(IHeroineState newState)
-    {
-        _state = newState;
-        _state.Enter();
-    }
-
-    private void Update()
-    {
-        _state.HandleInput();
-        _state.Update();
-    }
 }

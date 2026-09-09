@@ -1,35 +1,39 @@
 using UnityEngine;
 
-public class StandingState : IHeroineState
+namespace Chapter.State
 {
-    private readonly Heroine _heroine;
-
-    public StandingState(Heroine heroine)
+    public class StandingState : IHeroineState
     {
-        _heroine = heroine;
-    }
+        private readonly Heroine _heroine;
 
-    public void Enter()
-    {
-        Debug.Log("Enter Standing");
-    }
-
-    public void HandleInput()
-    {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        public StandingState(Heroine heroine)
         {
-            _heroine.SetHeroineState(new JumpingState(_heroine));
+            _heroine = heroine;
         }
 
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        public void Enter()
         {
-            _heroine.SetHeroineState(new DuckingState(_heroine));
+            Debug.Log("Enter Standing");
         }
-    }
+
+        public void HandleInput()
+        {
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                _heroine.SetHeroineState(new JumpingState(_heroine));
+            }
+
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                _heroine.SetHeroineState(new DuckingState(_heroine));
+            }
+        }
    
-    // Update is called once per frame
-    public void Update()
-    {
+        // Update is called once per frame
+        public void Update()
+        {
         
+        }
     }
 }
+
