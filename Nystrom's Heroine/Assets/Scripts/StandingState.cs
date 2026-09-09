@@ -33,6 +33,11 @@ namespace Chapter.State
                 _heroine.SetHeroineState(new WalkingState(_heroine));
             }
 
+            else if(Input.GetKeyDown(KeyCode.C))
+            {
+                _heroine.SetHeroineState(new ChargingState(_heroine));
+            }
+
         }
    
         // Update is called once per frame
