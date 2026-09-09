@@ -18,7 +18,10 @@ namespace Chapter.State
 
         public void HandleInput()
         {
-
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                _heroine.SetHeroineState(new StandingState(_heroine));
+            }
         }
         public void Update()
         {

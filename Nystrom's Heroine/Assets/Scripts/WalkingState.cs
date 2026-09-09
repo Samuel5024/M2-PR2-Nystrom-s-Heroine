@@ -2,44 +2,40 @@ using UnityEngine;
 
 namespace Chapter.State
 {
-    public class StandingState : IHeroineState
+    public class WalkingState : IHeroineState
     {
         private readonly Heroine _heroine;
 
-        public StandingState(Heroine heroine)
+        public WalkingState(Heroine heroine)
         {
             _heroine = heroine;
         }
-
         public void Enter()
         {
-            Debug.Log("Enter Standing");
+            Debug.Log("Enter Walking");
         }
 
         public void HandleInput()
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if(Input.GetKeyDown(KeyCode.UpArrow))
             {
                 _heroine.SetHeroineState(new JumpingState(_heroine));
             }
 
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            if(Input.GetKeyDown(KeyCode.DownArrow))
             {
                 _heroine.SetHeroineState(new DuckingState(_heroine));
             }
 
-            else if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+            if(Input.GetKeyDown(KeyCode.Space))
             {
-                _heroine.SetHeroineState(new WalkingState(_heroine));
+                _heroine.SetHeroineState(new StandingState(_heroine));
             }
-
         }
-   
-        // Update is called once per frame
+
         public void Update()
         {
-        
+
         }
     }
 }
-
